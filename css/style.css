@@ -76,7 +76,7 @@ nav ul li a {
 footer {
   font-family: "Poppins", sans-serif;
   bottom: 0;
-  background: blue;
+  background: black;
   height: auto;
   width: 100%;
 
@@ -140,7 +140,7 @@ footer {
 }
 
 .socials a .fa-youtube:hover,
-.socials a .fa-google-plus:hover {
+.socials a .fa-google-plus-g:hover {
   color: red;
 }
 .footer-bottom {
@@ -182,7 +182,7 @@ footer {
 }
 .footer-bottoms {
   display: flex;
-  background-color: #3532ce;
+  background-color: black;
   width: 100%;
   padding: 20px;
   /* padding-bottom: 10px; */
