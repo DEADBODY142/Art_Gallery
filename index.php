@@ -7,6 +7,7 @@
     <title>Art Gallery</title>
     <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -25,8 +26,10 @@
         artistic expression, showcasing a diverse collection of works that span various styles, mediums, and
         perspectives. Here, we invite you to embark on a visual journey that transcends boundaries and sparks the
         <span style="color:#867f7f">imagin<span style="color:#bcb4b4">ation</span></span><br>
-        <span id="text-deco"><a href="aboutus.php">Continue Reading</a></span>
+        <span id="text-deco"><a href="aboutus.php">Continue Reading <i class="fa-solid fa-hand-point-right"></i></a></span>
     </div>
+
+    <?php include_once "footer.php"; ?>
 </body>
 
 </html>
