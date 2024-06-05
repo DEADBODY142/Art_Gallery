@@ -330,6 +330,10 @@ if (isset($_POST['login'])) {
             background-position: center;
             background-size: cover;
         }
+
+        #hoverEffect:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <!------ Include the above in your HEAD tag ---------->
@@ -348,9 +352,8 @@ if (isset($_POST['login'])) {
                 </legend>
                 <input type="text" id="login" class="fadeIn second" name="username" placeholder="Login" autofocus required="true">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required="true">
-                <button type="submit" class="fadeIn fourth" name="login">Submit</button>
+                <button id="hoverEffect" type="submit" class="fadeIn fourth" name="login">Submit</button>
             </form>
-
             <div id="formFooter">
                 <a class="underlineHover" href="../index.php">Back to Home page</a>
             </div>
