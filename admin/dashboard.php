@@ -42,6 +42,8 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
     <link href="css/style-responsive.css" rel="stylesheet" />
     <link href="css/xcharts.min.css" rel=" stylesheet">
     <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -96,7 +98,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                         <!--/.info-box-->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="info-box brown-bg">
+                        <div class="info-box purple-bg">
                             <?php $query1 = mysqli_query($con, "Select * from tblenquiry where Status='Answer'");
                             $aenqcount = mysqli_num_rows($query1);
                             ?>
@@ -128,20 +130,20 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                     <!--/.col-->
 
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="info-box brown-bg">
-                            <?php $query1 = mysqli_query($con, "Select * from tblartmedium");
+                        <div class="info-box red-bg">
+                            <?php $query1 = mysqli_query($con, "Select * from tblcontact");
                             $amcount = mysqli_num_rows($query1);
                             ?>
                             <i class="fa fa-file"></i>
                             <div class="count"><?php echo $amcount; ?></div>
-                            <div class="title"> <a class="dropdown-item" href="manage-art-medium.php">Total Art Medium</a></div>
+                            <div class="title"> <a class="dropdown-item" href="managecontact.php">Contacts</a></div>
                         </div>
                         <!--/.info-box-->
                     </div>
                     <!--/.col-->
 
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="info-box dark-bg">
+                        <div class="info-box yellow-bg">
                             <?php $query2 = mysqli_query($con, "Select * from tblartproduct");
                             $apcount = mysqli_num_rows($query2);
                             ?>
