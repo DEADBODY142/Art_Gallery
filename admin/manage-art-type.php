@@ -121,7 +121,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                   } ?>
                 </table>
               </section>
-              <span style="margin-left:900px;margin-top:0;padding-top:0;"><input type="button" value="Add art type" class="btn btn-success" id="btnHome" onClick="Javascript:window.location.href = 'add-art-type.php';" /></span>
+              <!-- <span style="margin-left:900px;margin-top:0;padding-top:0;"><input type="button" value="Add art type" class="btn btn-success" id="btnHome" onClick="Javascript:window.location.href = 'add-art-type.php';" /></span> -->
             </div>
 
           </div>
