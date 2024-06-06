@@ -102,7 +102,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                     </tr>
                   </thead>
                   <?php
-                  $ret = mysqli_query($con, "select *from  tblenquiry where (Status='' || Status is null)");
+                  $ret = mysqli_query($con, "select * from  tblenquiry where (Status='' || Status is null)");
                   $cnt = 1;
                   while ($row = mysqli_fetch_array($ret)) {
 
