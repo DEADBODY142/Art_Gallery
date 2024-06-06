@@ -8,6 +8,26 @@
     <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo time(); ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gal button {
+            background-color: royalblue;
+            border: 0;
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .gal button:hover {
+            background-color: #265391;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,6 +61,22 @@
         </div>
         <div class="gal">
             <a href="gallery.php"><button>View more</button></a>
+        </div>
+    </div>
+    <div style="height:15px;background-color:beige"></div>
+    <div class="slogan">
+        <div class=" left_slogan">
+            "Artworks in Nepal is a hidden gem! The variety and quality of art pieces are exceptional. The staff is friendly
+            and knowledgeable. Thank you for providing such a wonderful experience!"
+            <br>-Samantha
+        </div>
+        <div class="middle_slogan">
+            "Artworks Gallery provided a captivating and immersive experience, showcasing a diverse range of thought-provoking pieces that left me inspired and enriched, making it a must-visit for any art enthusiast."
+            <br>-Bishnu
+        </div>
+        <div class="right_slogan">
+            "Artworks Gallery is a captivating sanctuary of creativity, where every brushstroke and sculpture tells a unique story, weaving a mesmerizing tapestry of artistic expression that left me awe-inspired and deeply moved."
+            <br>-Raizen
         </div>
     </div>
     <?php include_once "footer.php"; ?>

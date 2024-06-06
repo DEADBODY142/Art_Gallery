@@ -71,6 +71,95 @@ nav ul li a {
   color: blue;
 }
 
+/* gallery */
+.gallery {
+  width: 100%;
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(9, 0, 77, 0.65), rgba(9, 0, 77, 0.65)),
+    url(../images/gall.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  padding: 10px 8%;
+}
+
+.gallery .gal_head h2 {
+  margin-top: 200px;
+  /* justify-content: center;
+    align-items: center; */
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+.items {
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5dc;
+  min-height: 100vh;
+  /* margin-bottom: 50px; */
+}
+
+.pad_left {
+  margin-left: 70px;
+}
+
+.items img {
+  border: 0;
+  border: 2px solid black;
+  margin: 20px;
+  margin-top: 50px;
+  max-width: 500px;
+  max-height: 340px;
+  /* padding: 20px; */
+}
+
+/* slogan */
+.slogan {
+  padding: 40px;
+  /* height: 200vh; */
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  background-image: url(../images/hakku.jpg);
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-attachment: fixed; */
+  display: flex;
+  flex-direction: row;
+}
+
+.left_slogan {
+  background-color: rgba(0, 0, 0, 0.4);
+  float: left;
+  padding: 10px;
+  border: 1px solid;
+  width: 50%;
+  padding-left: 2px;
+  margin-right: 20px;
+}
+
+.middle_slogan {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* background: transparent; */
+  float: left;
+  padding: 10px;
+  border: 1px solid;
+  width: 50%;
+  margin-right: 20px;
+}
+
+.right_slogan {
+  background-color: rgba(0, 0, 0, 0.6);
+  float: left;
+  padding: 10px;
+  border: 1px solid;
+  width: 50%;
+  margin-right: 20px;
+}
+
 /* footer */
 
 footer {
