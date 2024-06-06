@@ -28,7 +28,21 @@
         <span style="color:#867f7f">imagin<span style="color:#bcb4b4">ation</span></span><br>
         <span id="text-deco"><a href="aboutus.php">Continue Reading <i class="fa-solid fa-hand-point-right"></i></a></span>
     </div>
-
+    <div class="gallery">
+        <div class="gal_head">
+            <h2>Our Gallery</h2>
+        </div>
+    </div>
+    </div>
+    <div class="items">
+        <div class="pad_left">
+            <img src="images/zeus.jpg" alt=""><img src="images/andy.jpeg" alt=""><img src="images/serigraphy.jpg" alt=""><img src="images/streetart.jpg" alt="" height="320px"><img src="images/maha.jpg" alt="" height="320px">
+            <img src="images/village.jpg" alt="">
+        </div>
+        <div class="gal">
+            <a href="gallery.php"><button>View more</button></a>
+        </div>
+    </div>
     <?php include_once "footer.php"; ?>
 </body>
 
