@@ -3,4 +3,5 @@ Swal.fire({
     icon: "error",
 }).then(function () {
     window.location = "index.php";
+    //demo
 });
