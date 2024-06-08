@@ -101,11 +101,10 @@ include('includes/dbconnection.php');
                                                 <h4>
                                                    <a href="single-product.php?pid=<?php echo $row['apid']; ?>" style="color:#000"><?php echo $row['Title']; ?></a>
                                                 </h4>
-                                                <div class="product_price">
-                                                   <h4>
-                                                      <button class="btn btn-success"><a href="art-enquiry.php?eid=<?php echo $row['apid']; ?>" style="color:#fff">Enquiry</a></button>
-                                                   </h4>
-                                                </div>
+                                                <form action="checkout.php" method="post">
+                                                   <input type="hidden" name="product_id" value="<?php echo $row['apid']; ?>" />
+                                                   <input type="submit" name="submit" value="Buy Now" class="btn btn-success">
+                                                </form>
                                              </div>
 
                                           </div>
