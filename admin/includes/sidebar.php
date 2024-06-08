@@ -9,7 +9,16 @@
         </a>
       </li>
 
+      <li class="sub-menu">
+        <a href="javascript:;" class="">
+          <span>Artist</span>
+        </a>
+        <ul class="sub">
+          <li><a class="" href="add-artist.php">Add Artist</a></li>
+          <li><a class="" href="manage-artist.php">Manage Artist</a></li>
 
+        </ul>
+      </li>
       <li class="sub-menu">
         <a href="javascript:;" class="">
           <!-- <i class="icon_document_alt"></i> -->
@@ -34,30 +43,16 @@
         </ul>
       </li>
       <li class="sub-menu">
-        <a href="javascript:;" class="">
-          <!-- <i class="icon_table"></i> -->
-          <span>Enquiry</span>
-          <!-- <span class="menu-arrow arrow_carrot-right"></span> -->
+        <a href="totaltransaction.php" class="">
+          <span>Total Transaction</span>
         </a>
-        <ul class="sub">
-          <li><a class="" href="unanswer-enquiry.php">Unanswer Enquiry</a></li>
-          <li><a class="" href="answer-enquiry.php">Answered Enquiry</a></li>
-        </ul>
       </li>
-      <!-- <li>
-            <a class="" href="search.php">
-                          <i class="icon_genius"></i>
-                          <span>Search Enquiry</span>
-                      </a>
-          </li> -->
+
       <li class="sub-menu">
         <a href="managecontact.php" class="">
-          <!-- <i class="icon_document_alt"></i> -->
           <span>Manage Contact</span>
-          <!-- <span class="menu-arrow arrow_carrot-right"></span> -->
         </a>
-    </ul>
-    </li>
+      </li>
     </ul>
     <!-- sidebar menu end-->
   </div>

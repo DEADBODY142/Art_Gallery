@@ -92,8 +92,11 @@ include('includes/dbconnection.php');
                             <div class="occasion-cart" style="margin-top:20px">
                                 <div>
 
-                                    <span class="spenq" style="border: 1px solid black;padding:6px;border-radius:12px; "><a href="art-enquiry.php?eid=<?php echo $row['apid']; ?>">Enquiry</a></span></button>
-
+                                    <!-- <span class="spenq" style="border: 1px solid black;padding:6px;border-radius:12px; "><a href="art-enquiry.php?eid=<?php echo $row['apid']; ?>">Enquiry</a></span></button> -->
+                                    <form action="checkout.php" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $row['apid']; ?>" />
+                                        <input type="submit" name="submit" value="Buy Now" class="btn btn-success">
+                                    </form>
                                 </div>
                             </div>
 

@@ -2,21 +2,27 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['csmsaid']==0)) {
+if (strlen($_SESSION['agmsaid']==0)) {
   header('location:logout.php');
   } else{
 
+if(isset($_GET['delid']))
+{
+$rid=intval($_GET['delid']);
+$sql=mysqli_query($con,"delete from tblartist where ID='$rid'");
+ echo "<script>alert('Data deleted');</script>"; 
+  echo "<script>window.location.href = 'manage-artist.php'</script>";     
 
+
+}
 
   ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  
-  <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Unanswer Enquiry | Car Showroom Management System</title>
+  <title>Manage Artist | ArtWorks</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,11 +53,11 @@ if (strlen($_SESSION['csmsaid']==0)) {
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-table"></i>Total Received Enquiry</h3>
+            <h3 class="page-header"><i class="fa fa-table"></i> Manage Artist</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="dashboard.php">Home</a></li>
-              <li><i class="fa fa-table"></i>Enquiry</li>
-              <li><i class="fa fa-th-list"></i>Total Received Enquiry</li>
+              <li><i class="fa fa-table"></i>Artist</li>
+              <li><i class="fa fa-th-list"></i>Manage Artist</li>
             </ol>
           </div>
         </div>
@@ -60,25 +66,27 @@ if (strlen($_SESSION['csmsaid']==0)) {
           <div class="col-sm-12">
             <section class="panel">
               <header class="panel-heading">
-              Total Received Enquiry
+                Manage Artist
               </header>
               <table class="table">
                 <thead>
-                                        <tr>
+                                        
                                             <tr>
                   <th>S.NO</th>
             
                  
-                    <th>Enquiry Number</th>
-                    <th>Full Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Mobile Number</th>
+                    <th>Profile pic</th>
+                    <th>Registration Date</th>
                    
                           <th>Action</th>
                 </tr>
                                         </tr>
                                         </thead>
                <?php
-$ret=mysqli_query($con,"select *from  tblenquiry");
+$ret=mysqli_query($con,"select *from  tblartist");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -86,13 +94,13 @@ while ($row=mysqli_fetch_array($ret)) {
               
                 <tr>
                   <td><?php echo $cnt;?></td>
-            
-                 
-                  <td><?php  echo $row['EnquiryNumber'];?></td>
-                  <td><?php  echo $row['FullName'];?></td>
+            <td><?php  echo $row['Name'];?></td>
+                <td><?php  echo $row['Email'];?></td> 
                   <td><?php  echo $row['MobileNumber'];?></td>
-                  
-                  <td><a href="view-enquiry-detail.php?viewid=<?php echo $row['ID'];?>">View Details</a></td>
+             <td><img src="images/<?php  echo $row['Profilepic'];?>" width='100' height="100"></td>
+
+                  <td><?php  echo $row['CreationDate'];?></td>
+                  <td><a href="edit-artist-detail.php?editid=<?php echo $row['ID'];?>" class="btn btn-success">Edit</a> || <a href="manage-artist.php?delid=<?php echo $row['ID'];?>" class="btn btn-danger">Delete</a></td>
                 </tr>
                 <?php 
 $cnt=$cnt+1;

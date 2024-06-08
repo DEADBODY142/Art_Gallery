@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/abstyle.css">
+    <style>
+        .imagem {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,6 +48,8 @@
             established artists. We take pride in fostering a collaborative environment that nurtures talent, fosters
             dialogue, and encourages artistic growth. Our commitment to the arts extends beyond the gallery walls, as we
             actively engage with the local community through exhibitions, workshops, and outreach programs.
+            <br><br>
+            <span class="imagem"><img src="images/about.jpg" alt="Place"></span>
             <br><br>
             Our team at Art<span style="color:blue;">works</span> is passionate about creating a dynamic platform for artists to share their stories
             and visions with the world. We work tirelessly to connect artists with art lovers, collectors, and enthusiasts
