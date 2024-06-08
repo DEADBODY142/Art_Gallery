@@ -1,24 +1,7 @@
 <?php
 include('includes/dbconnection.php');
 ?>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $product_id = $_POST['product_id'];
-    $sql = "select tblartproduct.id as ID, tblartproduct.title as Title,tblartproduct.SellingPricing as price,tblartproduct.Description as description,tblartproduct.Image as Image,tblartproduct.refnum,tblartist.name as artist,tblarttype.arttype as arttype from tblartproduct join tblarttype on tblarttype.ID=tblartproduct.ArtType  join tblartist on tblartist.ID=tblartproduct.Artist where tblartproduct.id='$product_id'";
-    $result = mysqli_query($con, $sql);
-    if ($result) {
-        if (mysqli_num_rows($result) == 1) {
-            $product = mysqli_fetch_assoc($result);
-            $invoice_no = $product['ID'] . time();
-            $total = $product['price'];
-            $query = "insert into orders(product_id,invoice_no,total,status) values('$product_id','$invoice_no','$total',0)";
-            if (!mysqli_query($con, $query)) {
-                die("ERROR");
-            }
-        }
-    }
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/abstyle.css">
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.all.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.min.css " rel="stylesheet">
+
     <style>
         * {
             font-family: "Poppins", sans-serif;
@@ -104,6 +90,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $product_id = $_POST['product_id'];
+        $sql = "select tblartproduct.id as ID, tblartproduct.title as Title,tblartproduct.SellingPricing as price,tblartproduct.Description as description,tblartproduct.Image as Image,tblartproduct.refnum,tblartist.name as artist,tblarttype.arttype as arttype from tblartproduct join tblarttype on tblarttype.ID=tblartproduct.ArtType  join tblartist on tblartist.ID=tblartproduct.Artist where tblartproduct.id='$product_id'";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+            if (mysqli_num_rows($result) == 1) {
+                $product = mysqli_fetch_assoc($result);
+                $invoice_no = $product['ID'] . time();
+                $total = $product['price'];
+                $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1'";
+                $result1 = mysqli_query($con, $sql1);
+                if (mysqli_num_rows($result1) != 0) {
+                    echo '<script src="script.js"></script>';
+                } else {
+                    $query = "insert into orders(product_id,invoice_no,total,status) values('$product_id','$invoice_no','$total',0)";
+
+                    if (!mysqli_query($con, $query)) {
+                        die("ERROR");
+                    }
+                }
+            }
+        }
+    }
+    ?>
     <div class="about_container">
         <?php include_once "abheader.php" ?>
         <div id="heading">
