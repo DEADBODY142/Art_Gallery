@@ -74,7 +74,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
 
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="info-box green-bg">
+                        <div class="info-box brown-bg">
                             <?php $query = mysqli_query($con, "Select * from tblartist");
                             $artcount = mysqli_num_rows($query);
                             ?>
@@ -86,25 +86,25 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                     </div>
                     <!--/.col-->
 
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box brown-bg">
-                            <?php $query1 = mysqli_query($con, "Select * from tblenquiry where Status='' || Status is null");
+                            <?php $query1 = mysqli_query($con, "Select * from orders where status=1");
                             $uenqcount = mysqli_num_rows($query1);
                             ?>
                             <i class="fa fa-file"></i>
                             <div class="count"><?php echo $uenqcount; ?></div>
-                            <div class="title"> <a class="dropdown-item" href="unanswer-enquiry.php">Total Unanswer Enquiry</a></div>
-                        </div>
-                        <!--/.info-box-->
-                    </div>
+                            <div class="title"> <a class="dropdown-item" href="unanswer-enquiry.php">Total Artist</a></div>
+                        </div> -->
+                    <!--/.info-box-->
+                    <!-- </div> -->
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="info-box purple-bg">
-                            <?php $query1 = mysqli_query($con, "Select * from tblenquiry where Status='Answer'");
+                        <div class="info-box green-bg">
+                            <?php $query1 = mysqli_query($con, "Select * from orders where Status='1'");
                             $aenqcount = mysqli_num_rows($query1);
                             ?>
                             <i class="fa fa-file"></i>
                             <div class="count"><?php echo $aenqcount; ?></div>
-                            <div class="title"> <a class="dropdown-item" href="answer-enquiry.php">Total Answer Enquiry</a></div>
+                            <div class="title"> <a class="dropdown-item" href="totaltransaction.php">Total Transaction</a></div>
                         </div>
                         <!--/.info-box-->
                     </div>
@@ -114,8 +114,6 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                     <!--/.col-->
 
 
-                </div>
-                <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box dark-bg">
                             <?php $query2 = mysqli_query($con, "Select * from tblarttype");
@@ -127,7 +125,10 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                         </div>
                         <!--/.info-box-->
                     </div>
-                    <!--/.col-->
+                </div>
+
+                <!--/.col-->
+                <div class="row">
 
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="info-box red-bg">
