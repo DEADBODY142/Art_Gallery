@@ -3,7 +3,7 @@ include 'includes/dbconnection.php';
 
 if (isset($_GET['oid']) && isset($_GET['amt']) && $_GET['refId']) {
     $sql = "SELECT * FROM orders WHERE invoice_no = '" . $_REQUEST['oid'] . "'";
-    echo $sql;
+    // echo $sql;
     $result = mysqli_query($con, $sql);
     if ($result) {
         if (mysqli_num_rows($result)) {

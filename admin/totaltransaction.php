@@ -7,7 +7,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
 } else {
     if (isset($_GET['delid'])) {
         $rid = intval($_GET['delid']);
-        $sql = mysqli_query($con, "delete from orders where ID='$rid'");
+        $sql = mysqli_query($con, "delete from orders where id=$rid");
         echo "<script>alert('Data deleted');</script>";
         echo "<script>window.location.href = 'totaltransaction.php'</script>";
     }
@@ -102,7 +102,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                                         </tr>
                                     </thead>
                                     <?php
-                                    $ret = mysqli_query($con, "select orders.invoice_no as invoice_no,orders.product_id as pid,orders.total as total,orders.status as status,tblartproduct.Title as Title,tblartproduct.Image as Image,tblartist.Name as Name from tblartproduct join orders on tblartproduct.ID=orders.product_id join tblartist on tblartproduct.Artist=tblartist.ID where status=1 ");
+                                    $ret = mysqli_query($con, "select orders.invoice_no as invoice_no,orders.product_id as pid,orders.total as total,orders.status as status,orders.id as jid,tblartproduct.Title as Title,tblartproduct.Image as Image,tblartist.Name as Name from tblartproduct join orders on tblartproduct.ID=orders.product_id join tblartist on tblartproduct.Artist=tblartist.ID where status=1 ");
                                     $cnt = 1;
                                     while ($row = mysqli_fetch_array($ret)) {
 
@@ -119,7 +119,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                                             <td><?php echo $row['Name']; ?></td>
                                             <td><?php echo $row['total']; ?></td>
 
-                                            <td><a href="totaltransaction.php?delid=<?php echo $row['id']; ?>" class="btn btn-danger"><? echo $row['id']; ?>Delete</a>
+                                            <td><a href="totaltransaction.php?delid=<?php echo $row['jid']; ?>" class="btn btn-danger">Delete</a>
 
                                             </td>
                                         </tr>

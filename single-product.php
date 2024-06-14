@@ -84,7 +84,7 @@ include('includes/dbconnection.php');
 
                                 <h5>Art Medium : <?php echo $row['amname']; ?></h5>
                                 <h5>Art Reference Number : <?php echo $row['RefNum']; ?></h5>
-                                <h5>Price : <?php echo $row['SellingPricing']; ?></h5>
+                                <h5>Price : Rs. <?php echo $row['SellingPricing']; ?></h5>
 
                                 <!-- <div class="clearfix"> </div> -->
                             </div>

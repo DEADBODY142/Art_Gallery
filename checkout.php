@@ -100,8 +100,9 @@ include('includes/dbconnection.php');
                 $product = mysqli_fetch_assoc($result);
                 $invoice_no = $product['ID'] . time();
                 $total = $product['price'];
-                $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1'";
+                $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1' AND product_id=$product_id";
                 $result1 = mysqli_query($con, $sql1);
+                $row = mysqli_num_rows($result1);
                 if (mysqli_num_rows($result1) != 0) {
                     echo '<script src="script.js"></script>';
                 } else {
@@ -131,7 +132,7 @@ include('includes/dbconnection.php');
                         <h5 class="card-title" style="line-height: 1.6;"><span style="font-weight:bold">Title: </span><span style="color: rosybrown;"><?php echo $product['Title']; ?></span><br>
                             <span style="font-weight:bold">Artist: </span><span style="color: rosybrown;"><?php echo $product['artist']; ?></span><br>
                             <span style="font-weight:bold">Art Type: </span><span style="color: rosybrown;"><?php echo $product['arttype']; ?></span><br>
-                            <span style="font-weight:bold">Price: </span><span style="color: rosybrown;"><?php echo $product['price']; ?></span><br>
+                            <span style="font-weight:bold">Price: Rs. </span><span style="color: rosybrown;"><?php echo $product['price']; ?></span><br>
                             <span style="font-weight:bold">Description: </span><span style="color: rosybrown;"><?php echo $product['description']; ?></span><br>
                         </h5>
                     </div>
