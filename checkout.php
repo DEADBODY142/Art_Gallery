@@ -1,5 +1,6 @@
 <?php
 include('includes/dbconnection.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +100,17 @@ include('includes/dbconnection.php');
             if (mysqli_num_rows($result) == 1) {
                 $product = mysqli_fetch_assoc($result);
                 $invoice_no = $product['ID'] . time();
+                $_SESSION['order_id'] = $invoice_no;
                 $total = $product['price'];
+                // Prepare the message according to the specified order of signed field names
+                $message = "total_amount={$total},transaction_uuid={$invoice_no},product_code=EPAYTEST";
+
+                // Secret key for HMAC-SHA256
+                $secret_key = '8gBm/:&EnhH.1/q';
+
+                // Generate the HMAC-SHA256 hash and then encode it in Base64
+                $hash = hash_hmac('sha256', $message, $secret_key, true);
+                $signature = base64_encode($hash);
                 $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1' AND product_id=$product_id";
                 $result1 = mysqli_query($con, $sql1);
                 $row = mysqli_num_rows($result1);
@@ -141,7 +152,7 @@ include('includes/dbconnection.php');
             <div class="rightcheckcontainer">
                 Pay With:
                 <div class="list-group list-group-flush">
-                    <form action="https://uat.esewa.com.np/epay/main" method="GET">
+                    <!-- <form action="https://uat.esewa.com.np/epay/main" method="GET">
                         <input value=<?php echo $product['price'] ?> name="tAmt" type="hidden">
                         <input value=<?php echo $product['price'] ?> name="amt" type="hidden">
                         <input value=<?php echo $product['ID'] ?> name="product_id" type="hidden">
@@ -152,6 +163,20 @@ include('includes/dbconnection.php');
                         <input value="<?php echo $invoice_no ?>" name="pid" type="hidden">
                         <input value="https://localhost/artgallery/success.php" type="hidden" name="su">
                         <input value="https://google.com" type="hidden" name="fu">
+                        <a class="list-group-item list-group-item-action"><input type="image" src="images/esewaa.png" alt="esewa"></a>
+                    </form> -->
+                    <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+                        <input type="hidden" id="amount" name="amount" value="<?php echo $product['price']; ?>" required>
+                        <input type="hidden" id="tax_amount" name="tax_amount" value="0" required>
+                        <input type="hidden" id="total_amount" name="total_amount" value="<?php echo $product['price']; ?>" required>
+                        <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="<?php echo $invoice_no; ?>" required>
+                        <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required>
+                        <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required>
+                        <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
+                        <input type="hidden" id="success_url" name="success_url" value="http://localhost/artgallery/success.php" required>
+                        <input type="hidden" id="failure_url" name="failure_url" value="http://localhost/ecom/esewa_failure.php" required>
+                        <input type="hidden" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required>
+                        <input type="hidden" id="signature" name="signature" value="<?php echo $signature; ?>" required>
                         <a class="list-group-item list-group-item-action"><input type="image" src="images/esewaa.png" alt="esewa"></a>
                     </form>
 
