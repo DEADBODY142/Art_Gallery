@@ -7,21 +7,31 @@
 4. If the product has already been purchased, a prompt of product unavailability is shown then redirected to index.
 5. If not, upon clicking the esewa option (at the time, only esewa gateway is done), user is redirected to esewa test server(new)
 6. Here the credentials are:
+
    eSewa id: 9806800001
+   
    Password/Mpin: Nepal@123/1122
+   
    Token: 123456
-7. After this a successful prompt will be shown and then the user is redirected to the index.
+8. After this a successful prompt will be shown and then the user is redirected to the index.
 
 ## Admin features
-1. The login info for the admin are: 
-  Id: admin
-  Pw: 123
-2. After logging in you can perform crud operations on following:
+1. The login info for the admin are:
+
+   Id: admin
+
+   Password: 123
+  
+3. After logging in you can perform crud operations on following:
+
    Artist
+   
    Art Type
+   
    Products
+   
    Total Transaction
-3. Here there is also Manage contact section, where after reading the user's message, the admin can delete them.
+5. Here there is also Manage contact section, where after reading the user's message, the admin can delete them.
   
    
    
