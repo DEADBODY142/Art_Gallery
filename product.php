@@ -23,7 +23,17 @@ include('includes/dbconnection.php');
 
    <!-- <link href="../css/style.css" rel='stylesheet' type='text/css' media="all"> -->
    <style>
+      .left-side ul li {
+         font-size: 20px;
+      }
 
+      .img-thumbnail {
+         max-width: 100%;
+         /* Ensures images don't exceed their original size */
+         height: auto;
+         /* Allows images to scale proportionally */
+         display: block;
+      }
    </style>
 
 </head>
@@ -59,14 +69,14 @@ include('includes/dbconnection.php');
                   <div class="left-side">
                      <h4 class="agileits-sear-head">Art Type</h4>
                      <ul>
-                        <li>
+                        <li style="list-style: none;">
                            <?php
                            $ret = mysqli_query($con, "select * from tblarttype");
                            $cnt = 1;
                            while ($row = mysqli_fetch_array($ret)) {
 
                            ?>
-                              <a class="nav-link" href="product.php?cid=<?php echo $row['ID']; ?>&&artname=<?php echo $row['ArtType']; ?>"><span class="span" style="color:black"><?php echo $row['ArtType']; ?></span></a> <?php } ?>
+                              <a class="nav-link " href="product.php?cid=<?php echo $row['ID']; ?>&&artname=<?php echo $row['ArtType']; ?>"><span style="color:black;"><?php echo $row['ArtType']; ?></span></a> <?php } ?>
                         </li>
 
                      </ul>
@@ -90,7 +100,7 @@ include('includes/dbconnection.php');
                               <div class="product-toys-info">
                                  <div class="men-pro-item">
                                     <div class="men-thumb-item">
-                                       <span style="max-width: 300px; min-width:300px; max-height:300px; min-height: 300px"><a href="single-product.php?pid=<?php echo $row['apid']; ?>" style="color:#000"><img src="admin/images/<?php echo $row['Image']; ?>" class="img-thumbnail" alt=""></a></span>
+                                       <span id="img_shape" style="max-width: 300px; min-width:300px; max-height:300px; min-height: 300px"><a href="single-product.php?pid=<?php echo $row['apid']; ?>" style="color:#000"><img src="admin/images/<?php echo $row['Image']; ?>" class="img-thumbnail" alt=""></a></span>
                                        <div class="men-cart-pro">
                                           <div class="inner-men-cart-pro">
                                              <!-- <a href="single-product.php?pid=<?php echo $row['apid']; ?>" class="link-product-add-cart"> View Details</a> -->
@@ -107,7 +117,6 @@ include('includes/dbconnection.php');
                                                 </h4>
                                                 <form action="checkout.php" method="post">
                                                    <input type="hidden" name="product_id" value="<?php echo $row['apid']; ?>" />
-                                                   <input type="submit" name="submit" value="Buy Now" class="btn btn-success">
                                                 </form>
                                              </div>
 

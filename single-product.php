@@ -2,6 +2,14 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+if (isset($_POST['checkout'])) {
+    if (!isset($_SESSION['login_name'])) {
+
+        echo "<script>alert('Please Login');</script>";
+    } else {
+        echo "<script type='text/javascript'> document.location ='checkout.php'; </script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +26,7 @@ include('includes/dbconnection.php');
     <link rel="stylesheet" href="css/abstyle.css">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <link href="../css/style.css" rel='stylesheet' type='text/css' media="all"> -->
     <style>
         .spenq {
@@ -51,8 +59,13 @@ include('includes/dbconnection.php');
                 <?php
                 $pid = $_GET['pid'];
                 $ret = mysqli_query($con, "select tblarttype.ID as atid,tblarttype.ArtType as typename,tblartmedium.ID as amid,tblartmedium.ArtMedium as amname,tblartproduct.ID as apid,tblartist.Name,tblartproduct.Title,tblartproduct.Dimension,tblartproduct.Orientation,tblartproduct.Size,tblartproduct.Artist,tblartproduct.ArtType,tblartproduct.ArtMedium,tblartproduct.SellingPricing,tblartproduct.Description,tblartproduct.Image,tblartproduct.Image1,tblartproduct.Image2,tblartproduct.Image3,tblartproduct.Image4,tblartproduct.RefNum,tblartproduct.ArtType from tblartproduct join tblarttype on tblarttype.ID=tblartproduct.ArtType join tblartmedium on tblartmedium.ID=tblartproduct.ArtMedium join tblartist on tblartist.ID=tblartproduct.Artist where tblartproduct.ID='$pid'");
+                $ret2 = mysqli_query($con, "select status from orders where product_id=$pid && status=1");
+
+                $order_status = mysqli_fetch_array($ret2);
                 $cnt = 1;
                 while ($row = mysqli_fetch_array($ret)) {
+                    // echo ("select status from orders where product_id=$pid where status=1");
+
                 ?>
                     <div class="row">
                         <div class="col-lg-4 single-right-left ">
@@ -93,9 +106,16 @@ include('includes/dbconnection.php');
                                 <div>
 
                                     <!-- <span class="spenq" style="border: 1px solid black;padding:6px;border-radius:12px; "><a href="art-enquiry.php?eid=<?php echo $row['apid']; ?>">Enquiry</a></span></button> -->
-                                    <form action="checkout.php" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $row['apid']; ?>" />
-                                        <input type="submit" name="submit" value="Buy Now" class="btn btn-success">
+                                    <form method="post">
+                                        <input type="hidden" name="product_id" value="<?php
+                                                                                        $_SESSION['prd_id'] = $row['apid'];
+                                                                                        echo $row['apid']; ?>" />
+                                        <?php if ($order_status > 0) { ?>
+                                            <input type="submit" value="Purchase" class="btn btn-danger" id="purchaseBtn">
+                                        <?php } else { ?>
+                                            <input type="submit" value="Buy Now" name='checkout' class="btn btn-success">
+                                        <?php } ?>
+
                                     </form>
                                 </div>
                             </div>
@@ -129,6 +149,20 @@ include('includes/dbconnection.php');
         </div>
     </section>
     <?php include "footer.php" ?>
+    <script>
+        // Select the purchase button
+        const purchaseBtn = document.getElementById('purchaseBtn');
+
+        // Add click event listener
+        purchaseBtn.addEventListener('click', function() {
+            // Display SweetAlert
+            Swal.fire({
+                title: "Sorry! The product has already been purchased",
+                icon: "error",
+            });
+        });
+    </script>
 </body>
+
 
 </html>

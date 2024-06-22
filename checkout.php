@@ -1,6 +1,6 @@
 <?php
-include('includes/dbconnection.php');
 session_start();
+include('includes/dbconnection.php');
 ?>
 
 <!DOCTYPE html>
@@ -92,36 +92,35 @@ session_start();
 
 <body>
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $product_id = $_POST['product_id'];
-        $sql = "select tblartproduct.id as ID, tblartproduct.title as Title,tblartproduct.SellingPricing as price,tblartproduct.Description as description,tblartproduct.Image as Image,tblartproduct.refnum,tblartist.name as artist,tblarttype.arttype as arttype from tblartproduct join tblarttype on tblarttype.ID=tblartproduct.ArtType  join tblartist on tblartist.ID=tblartproduct.Artist where tblartproduct.id='$product_id'";
-        $result = mysqli_query($con, $sql);
-        if ($result) {
-            if (mysqli_num_rows($result) == 1) {
-                $product = mysqli_fetch_assoc($result);
-                $invoice_no = $product['ID'] . time();
-                $_SESSION['order_id'] = $invoice_no;
-                $total = $product['price'];
-                // Prepare the message according to the specified order of signed field names
-                $message = "total_amount={$total},transaction_uuid={$invoice_no},product_code=EPAYTEST";
 
-                // Secret key for HMAC-SHA256
-                $secret_key = '8gBm/:&EnhH.1/q';
+    $product_id =  $_SESSION['prd_id'];
+    $sql = "select tblartproduct.id as ID, tblartproduct.title as Title,tblartproduct.SellingPricing as price,tblartproduct.Description as description,tblartproduct.Image as Image,tblartproduct.refnum,tblartist.name as artist,tblarttype.arttype as arttype from tblartproduct join tblarttype on tblarttype.ID=tblartproduct.ArtType  join tblartist on tblartist.ID=tblartproduct.Artist where tblartproduct.id='$product_id'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        if (mysqli_num_rows($result) == 1) {
+            $product = mysqli_fetch_assoc($result);
+            $invoice_no = $product['ID'] . time();
+            $_SESSION['order_id'] = $invoice_no;
+            $total = $product['price'];
+            // Prepare the message according to the specified order of signed field names
+            $message = "total_amount={$total},transaction_uuid={$invoice_no},product_code=EPAYTEST";
 
-                // Generate the HMAC-SHA256 hash and then encode it in Base64
-                $hash = hash_hmac('sha256', $message, $secret_key, true);
-                $signature = base64_encode($hash);
-                $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1' AND product_id=$product_id";
-                $result1 = mysqli_query($con, $sql1);
-                $row = mysqli_num_rows($result1);
-                if (mysqli_num_rows($result1) != 0) {
-                    echo '<script src="script.js"></script>';
-                } else {
-                    $query = "insert into orders(product_id,invoice_no,total,status) values('$product_id','$invoice_no','$total',0)";
+            // Secret key for HMAC-SHA256
+            $secret_key = '8gBm/:&EnhH.1/q';
 
-                    if (!mysqli_query($con, $query)) {
-                        die("ERROR");
-                    }
+            // Generate the HMAC-SHA256 hash and then encode it in Base64
+            $hash = hash_hmac('sha256', $message, $secret_key, true);
+            $signature = base64_encode($hash);
+            $sql1 = "select status,product_id from orders join tblartproduct on orders.product_id=tblartproduct.id where status = '1' AND product_id=$product_id";
+            $result1 = mysqli_query($con, $sql1);
+            $row = mysqli_num_rows($result1);
+            if (mysqli_num_rows($result1) != 0) {
+                echo '<script src="script.js"></script>';
+            } else {
+                $query = "insert into orders(product_id,invoice_no,total,status) values('$product_id','$invoice_no','$total',0)";
+
+                if (!mysqli_query($con, $query)) {
+                    die("ERROR");
                 }
             }
         }
