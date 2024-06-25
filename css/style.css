@@ -7,7 +7,7 @@
 }
 
 /* navigation bar */
-.container {
+.containers {
   width: 100%;
   min-height: 100vh;
   background-size: cover;
@@ -278,4 +278,8 @@ footer {
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+.modal-body {
+  /* display: flex; */
+  text-align: left;
 }

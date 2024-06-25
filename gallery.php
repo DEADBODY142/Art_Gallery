@@ -1,5 +1,4 @@
 <?php
-session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 ?>
@@ -20,12 +19,10 @@ include('includes/dbconnection.php');
 
     <style>
         .imgmil {
-            max-width: 360px;
-            min-width: 350px;
-            max-height: 400px;
-            min-height: 350px;
+            width: 360px;
+            height: 360px;
             margin: 30px;
-            margin-left: 12px;
+
         }
     </style>
 </head>

@@ -91,6 +91,7 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                                         <tr>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Purchased By</th>
                                             <th>Purchase Id</th>
                                             <th>Product Id</th>
                                             <th>Image</th>
@@ -102,16 +103,16 @@ if (strlen($_SESSION['agmsaid'] == 0)) {
                                         </tr>
                                     </thead>
                                     <?php
-                                    $ret = mysqli_query($con, "select orders.invoice_no as invoice_no,orders.product_id as pid,orders.total as total,orders.status as status,orders.id as jid,tblartproduct.Title as Title,tblartproduct.Image as Image,tblartist.Name as Name from tblartproduct join orders on tblartproduct.ID=orders.product_id join tblartist on tblartproduct.Artist=tblartist.ID where status=1 ");
+                                    $ret = mysqli_query($con, "select orders.invoice_no as invoice_no,orders.product_id as pid,orders.total as total,orders.status as status,orders.id as jid,orders.user_id as uid,orders.uname as uname,tblartproduct.Title as Title,tblartproduct.Image as Image,tblartist.Name as Name from tblartproduct join orders on tblartproduct.ID=orders.product_id join tblartist on tblartproduct.Artist=tblartist.ID where status=1 ");
                                     $cnt = 1;
                                     while ($row = mysqli_fetch_array($ret)) {
-
                                     ?>
 
                                         <tr>
                                             <td><?php echo $cnt; ?></td>
 
 
+                                            <td><?php echo $row['uname']; ?></td>
                                             <td><?php echo $row['invoice_no']; ?></td>
                                             <td><?php echo $row['pid']; ?></td>
                                             <td><img src="images/<?php echo $row['Image']; ?>" width='100' height="100"></td>
