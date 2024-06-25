@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2024 at 04:34 PM
+-- Generation Time: Jun 25, 2024 at 03:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,21 +32,20 @@ CREATE TABLE `orders` (
   `invoice_no` varchar(60) NOT NULL,
   `product_id` int(11) NOT NULL,
   `total` float NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `user_id` int(11) NOT NULL,
+  `uname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `invoice_no`, `product_id`, `total`, `status`) VALUES
-(151, '241718373825', 24, 145, 1),
-(152, '121718374440', 12, 458000, 0),
-(153, '101718374550', 10, 45000, 0),
-(156, '151718375108', 15, 4566, 0),
-(157, '151718375329', 15, 4566, 0),
-(158, '151718375394', 15, 4566, 0),
-(159, '151718375454', 15, 4566, 1);
+INSERT INTO `orders` (`id`, `invoice_no`, `product_id`, `total`, `status`, `user_id`, `uname`) VALUES
+(191, '241719319216', 24, 145, 1, 0, 'user1'),
+(192, '151719319468', 15, 4566, 1, 0, 'Jack'),
+(193, '91719319540', 9, 90000, 0, 0, ''),
+(194, '141719319687', 14, 1500, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -162,7 +161,7 @@ INSERT INTO `tblartproduct` (`ID`, `Title`, `Dimension`, `Orientation`, `Size`, 
 (9, 'Nataraaja', '456*456', 'Potrait', 'Medium', 12, 12, 15, '90000', 'Sculpture of the Hindu god Nataraja', 'fab87f3cb5c1af1251e9fd7f070f4a5d1708142040.jpg', '', '', '', '', 655923970, '2024-02-17 03:54:00'),
 (10, 'La Belle Ferroniere', '460*460', 'Potrait', NULL, 14, 18, 17, '45000', 'This is the portrait of La Belle Ferroniere. ', 'd344e9c38aeca1d223bd40f0e1f69be81708144394.jpg', '', '', '', '', 260648929, '2024-02-17 04:33:14'),
 (12, 'Starry Night', '480*400', 'Landscape', '', 15, 18, 17, '458000', '\"Starry Night\" is an iconic masterpiece by Vincent van Gogh, capturing the night sky in swirling, vivid patterns.', '1ba74d15cc1f14dbea12552222ac2b561708144834.jpg', '', '', '', '', 345769310, '2024-02-17 04:40:34'),
-(14, 'Marilyn Monroe', '450*450', 'Potrait', '', 13, 14, 18, '71000', 'This depicts the portrait of famous hollywood actress Marilyn Monroe by Andy Warhol', 'd9e23cff38fadae867f8ed9741109ef31708147913jpeg', '', '', '', '', 844861408, '2024-02-17 05:31:53'),
+(14, 'Marilyn Monroe', '450*450', 'Potrait', '', 13, 14, 18, '1500', 'This depicts the portrait of famous hollywood actress Marilyn Monroe by Andy Warhol', 'd9e23cff38fadae867f8ed9741109ef31708147913jpeg', '', '', '', '', 844861408, '2024-02-17 05:31:53'),
 (15, 'Eye', '456*456', 'Landscape', NULL, 15, 14, 17, '4566', 'This is also demo', '68743e3250dc526ef2b0aa8f232c7be81708148237.jpg', '', '', '', '', 570457727, '2024-02-17 05:37:17'),
 (24, 'Hindu Deity', '45*78', 'Potrait', NULL, 23, 18, 21, '145', 'This painting symbolizes hindu deity who punishes wrongdoers', '28cb655103ad21a7ccbf1be279d89ed71717832676.jpg', '', '', '', '', 811198731, '2024-06-08 07:44:36');
 
@@ -212,7 +211,9 @@ INSERT INTO `tblcontact` (`id`, `name`, `phone`, `email`, `message`) VALUES
 (30, 'Lydia Kertzmann', 432145138, 'your.email+fakedata80606@gmail.com', 'Nesciunt odio repellendus libero alias quas vitae sed.'),
 (31, 'Joaquin Smith', 153038830, 'your.email+fakedata93019@gmail.com', 'Nihil animi sequi reiciendis et beatae nobis quasi.'),
 (35, 'Astrid Emard', 158070852, 'your.email+fakedata68158@gmail.com', 'Sapiente corporis voluptatibus quis molestias facere.'),
-(37, 'Anais Kuhlman', 835774144, 'your.email+fakedata88347@gmail.com', 'Accusantium illum minima non laudantium dolorem natus nam.');
+(37, 'Anais Kuhlman', 835774144, 'your.email+fakedata88347@gmail.com', 'Accusantium illum minima non laudantium dolorem natus nam.'),
+(44, 'user1', 2147483647, 'user@gmail.com', 'Adipisci nemo ex commodi.'),
+(46, 'Jack', 984561234, 'jack@gmail.com', 'Hey this is Jack!! I purchased the eye painting <3');
 
 -- --------------------------------------------------------
 
@@ -271,6 +272,27 @@ CREATE TABLE `tblpage` (
 INSERT INTO `tblpage` (`ID`, `PageType`, `PageTitle`, `PageDescription`, `Email`, `MobileNumber`, `UpdationDate`, `Timing`) VALUES
 (1, 'aboutus', 'About Us', '<div><span style=\"font-size: 16px; color: rgb(32, 33, 36); font-family: arial, sans-serif;\">Welcome to <b>Artworks</b>, where art comes to life and creativity knows no bounds. Our gallery is a celebration of artistic expression, showcasing a diverse collection of works that span various styles, mediums, and perspectives. Here, we invite you to embark on a visual journey that transcends boundaries and sparks the imagination.</span><br></div>', NULL, NULL, NULL, ''),
 (2, 'contactus', 'Contact Us', 'Lazimpat Sadak, Kathmandu 45600', 'artworks@gmail.com', 9845612782, NULL, '9:00 am to 6:00 pm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(225) NOT NULL,
+  `email` varchar(225) NOT NULL,
+  `password` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'user1', 'user@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(2, 'Jack', 'jack@gmail.com', 'e10adc3949ba59abbe56e057f20f883e');
 
 --
 -- Indexes for dumped tables
@@ -332,6 +354,12 @@ ALTER TABLE `tblpage`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -339,7 +367,7 @@ ALTER TABLE `tblpage`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `tbladmin`
@@ -375,7 +403,7 @@ ALTER TABLE `tblarttype`
 -- AUTO_INCREMENT for table `tblcontact`
 --
 ALTER TABLE `tblcontact`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `tblenquiry`
@@ -388,6 +416,12 @@ ALTER TABLE `tblenquiry`
 --
 ALTER TABLE `tblpage`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
