@@ -32,6 +32,17 @@ include('includes/dbconnection.php');
         .gal button:hover {
             background-color: #265391;
         }
+
+        .pad_left {
+            padding-left: 150px;
+        }
+
+
+        .pad_left img {
+            height: 360px;
+            width: 360px;
+            margin: 20px;
+        }
     </style>
 </head>
 

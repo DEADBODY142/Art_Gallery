@@ -111,7 +111,7 @@ if (isset($_POST['checkout'])) {
                                                                                         $_SESSION['prd_id'] = $row['apid'];
                                                                                         echo $row['apid']; ?>" />
                                         <?php if ($order_status > 0) { ?>
-                                            <input type="submit" value="Purchase" class="btn btn-danger" id="purchaseBtn">
+                                            <input type="submit" value="Product Unavailable" class="btn btn-danger" id="purchaseBtn">
                                         <?php } else { ?>
                                             <input type="submit" value="Buy Now" name='checkout' class="btn btn-success">
                                         <?php } ?>
@@ -159,6 +159,8 @@ if (isset($_POST['checkout'])) {
             Swal.fire({
                 title: "Sorry! The product has already been purchased",
                 icon: "error",
+            }).then(function() {
+                //demo
             });
         });
     </script>

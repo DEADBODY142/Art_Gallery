@@ -14,7 +14,9 @@ if (isset($_GET['data'])) {
 
     // Check if the response indicates successful payment
     if (isset($response_data['status']) && $response_data['status'] === 'COMPLETE') {
-        $sql = "UPDATE orders SET status=1 WHERE invoice_no = $order_id";
+        $uid = $_SESSION['id'];
+        $uname = $_SESSION['login_name'];
+        $sql = "UPDATE orders SET status=1, uname='$uname' WHERE invoice_no = $order_id";
         $res = mysqli_query($con, $sql);
         if ($res) {
             unset($_SESSION['order_id']);

@@ -36,22 +36,32 @@ if (isset($_GET['submit'])) {
 
         body {
             /* background-color: aqua; */
-            /* background-image: url(images/grand.jpg); */
+            background-image: linear-gradient(rgba(9, 0, 77, 0.65), maroon),
+                url(images/mandala.jpg);
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
             /* background-position: center; */
             /* font-size: 14px; */
             font-family: 'Poppins', sans-serif;
         }
 
-        .containers {
-            width: 80%;
-            margin: 50px auto;
-        }
+
+        /* .containers {
+            /* background-image: linear-gradient(rgba(9, 0, 77, 0.65), maroon),
+                url(../images/mandala.jpg); */
+        /* width: 100vh; */
+        /* background-repeat: no-repeat;
+            background-size: cover; */
+        /* margin: 50px auto; */
+
 
         .contact-box {
             background-color: #fff;
             display: flex;
+            width: 80%;
+            margin: auto;
+
         }
 
         .contact-left {
@@ -143,28 +153,24 @@ if (isset($_GET['submit'])) {
 
 <body>
     <?php include_once "header.php" ?>
-    <?php
 
-    $ret = mysqli_query($con, "select * from tblpage where PageType='contactus' ");
-    $cnt = 1;
-    $row = mysqli_fetch_array($ret); ?>
     <div class="containers">
-        <h1 style="text-align: center;">Contact Us</h1>
+        <h1 style="text-align: center;color:white;">Contact Us</h1>
         <br>
         <div class="contact-box">
             <div class="contact-left">
                 <h2>Send Your Message</h2>
                 <form action="" method="get">
                     <div class="input-row">
-                        <div class="input-group"><label for="">Name</label><input type="text" placeholder="Your name" name="name" required>
+                        <div class="input-group"><label for="">Name</label><input type="text" value="<?php echo $_SESSION['login_name'] ?>" name=" name" required>
                         </div>
                     </div>
                     <div class="input-row">
-                        <div class="input-group"><label for="">Phone</label><input type="tel" placeholder="Your phone" name="phone" required>
+                        <div class="input-group"><label for="">Phone</label><input type="number" inputmode="numeric" placeholder="Your phone" name="phone" required>
                         </div>
                     </div>
                     <div class="input-row">
-                        <div class="input-group"><label for="">Email</label><input type="email" placeholder="Your email" name="email" required>
+                        <div class="input-group"><label for="">Email</label><input type="email" value="<?php echo $_SESSION['mail'] ?>" placeholder=" Your email" name="email" required>
                         </div>
                     </div>
                     <label for="">Message</label>
@@ -177,23 +183,24 @@ if (isset($_GET['submit'])) {
                 <table>
                     <tr>
                         <td>Email</td>
-                        <td><?php echo $row['Email']; ?></td>
+                        <td>artworks@gmail.com</td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td><?php echo $row['MobileNumber']; ?></td>
+                        <td>9845612782</td>
                     </tr>
                     <tr>
                         <td>Time</td>
-                        <td><?php echo $row['Timing']; ?></td>
+                        <td>9:00 am to 6:00 pm</td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td><?php echo $row['PageDescription']; ?></td>
+                        <td>Lazimpat Sadak, Kathmandu 45600</td>
                     </tr>
                 </table>
             </div>
         </div>
+    </div>
     </div>
     </div>
 </body>

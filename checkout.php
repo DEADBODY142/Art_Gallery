@@ -117,7 +117,7 @@ include('includes/dbconnection.php');
             if (mysqli_num_rows($result1) != 0) {
                 echo '<script src="script.js"></script>';
             } else {
-                $query = "insert into orders(product_id,invoice_no,total,status) values('$product_id','$invoice_no','$total',0)";
+                $query = "insert into orders(product_id,invoice_no,total,status,user_id) values('$product_id','$invoice_no','$total',0,0)";
 
                 if (!mysqli_query($con, $query)) {
                     die("ERROR");
